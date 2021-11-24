@@ -1,0 +1,43 @@
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>   
+</head>
+<div class="container">
+    <header>
+      <h3>Calory Tracker</h3>
+    </header>
+    <div class="main">
+      <div class="input">
+        <div>
+            Search  <input type="text" [(ngModel)]="searchItem" id="searchBox" name="search">
+          <div>
+            <button id="addingNewFood" (click)="addFood()" style="margin-left: 35%;">Add New Food</button><br><br>
+            <div>
+              <div>
+                <label for="name">Name</label>
+                <input type="text" [(ngModel)]="name" placeholder="Enter food name">
+              </div>
+              <div>
+                <label for="calories">Calories</label>
+                <input type="text" [(ngModel)]="calories" placeholder="Enter food calories">
+              </div>
+              <div>
+                <label for="Image">Image</label>
+                <input type="text" [(ngModel)]="image" placeholder="Enter food Image">
+              </div>
+            </div>
+          </div>
+        </div>
+      <div id="display" *ngIf="foodList.length">
+        <div class="show_food" *ngFor="let item of foodList | searchFilter: searchItem">
+          <div class="show_image">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+          </div>
+          <div class="foodDetails">
+            <div>{{ item.name.toUpperCase() }}</div>
+            <div>Calory - {{ item.calories }}</div>
+            <div>Quantity - {{ item.quantity }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
